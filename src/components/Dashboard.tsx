@@ -98,6 +98,7 @@ const Dashboard: React.FC = () => {
               key={id}
               onClick={() => setActiveTab(id)}
               className={`flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-medium transition-all ${
+              }
               className={`flex-shrink-0 flex items-center justify-center gap-2 px-3 sm:px-4 py-2 sm:py-3 rounded-xl font-medium transition-all text-sm sm:text-base ${
                 activeTab === id
                   ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
@@ -234,3 +235,6 @@ const Dashboard: React.FC = () => {
 };
 
 export default Dashboard;
+          }
+  )
+}
