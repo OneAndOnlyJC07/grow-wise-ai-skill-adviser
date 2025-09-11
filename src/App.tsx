@@ -14,7 +14,6 @@ import Footer from './components/Footer';
 import AnimatedLogo from './components/AnimatedLogo';
 import GlassCard from './components/GlassCard';
 import Dashboard from './components/Dashboard';
-import Dashboard from './components/Dashboard';
 import { skills, careerPaths, interests, workStyles, careerStages, indianCities } from './data/careers';
 import { Assessment, SkillGap } from './types';
 
