@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import AnimatedLogo from './components/AnimatedLogo';
 import GlassCard from './components/GlassCard';
 import Dashboard from './components/Dashboard';
+import Dashboard from './components/Dashboard';
 import { skills, careerPaths, interests, workStyles, careerStages, indianCities } from './data/careers';
 import { Assessment, SkillGap } from './types';
 
@@ -521,6 +522,15 @@ function App() {
                 Dashboard
               </motion.button>
             </div>
+            <motion.button
+              onClick={() => setCurrentScreen('dashboard')}
+              className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full font-medium hover:shadow-lg transition-all flex items-center gap-2"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <User className="w-4 h-4" />
+              Dashboard
+            </motion.button>
           </div>
         </motion.nav>
 
@@ -665,6 +675,7 @@ function App() {
         {currentScreen === 'interests' && renderInterests()}
         {currentScreen === 'profile' && renderProfile()}
         {currentScreen === 'results' && renderResults()}
+        {currentScreen === 'dashboard' && <Dashboard />}
         {currentScreen === 'dashboard' && <Dashboard />}
       </motion.div>
     </AnimatePresence>
