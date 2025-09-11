@@ -1,16 +1,29 @@
 import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Users, Target, TrendingUp } from 'lucide-react';
 import AnimatedLogo from './AnimatedLogo';
 import GlassCard from './GlassCard';
 import AnimatedCounter from './AnimatedCounter';
 import FloatingIcons from './FloatingIcons';
+import AuthModal from './AuthModal';
 
 interface HeroSectionProps {
   onGetStarted: () => void;
+  onUserSignIn?: (user: any) => void;
 }
 
-const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
+const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted, onUserSignIn }) => {
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [user, setUser] = useState<any>(null);
+
+  const handleSignIn = (userData: any) => {
+    setUser(userData);
+    if (onUserSignIn) {
+      onUserSignIn(userData);
+    }
+  };
+
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
       {/* Animated Background */}
@@ -24,32 +37,35 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
 
       {/* Navigation */}
       <motion.nav 
-        className="relative z-20 bg-white/5 backdrop-blur-xl border-b border-white/10"
+        className="relative z-20 bg-white/5 backdrop-blur-xl border-b border-white/10 px-4 sm:px-0"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <AnimatedLogo size="md" />
               <div>
-                <h1 className="text-2xl font-bold text-white">
+                <h1 className="text-xl sm:text-2xl font-bold text-white">
                   Grow Wise
                 </h1>
-                <p className="text-sm text-blue-200">AI Career Advisor</p>
+                <p className="text-xs sm:text-sm text-blue-200">AI Career Advisor</p>
               </div>
             </div>
-            <div className="hidden md:flex items-center gap-6">
-              <a href="#features" className="text-white/80 hover:text-white transition-colors">Features</a>
-              <a href="#careers" className="text-white/80 hover:text-white transition-colors">Careers</a>
-              <a href="#about" className="text-white/80 hover:text-white transition-colors">About</a>
+            <div className="flex items-center gap-2 sm:gap-6">
+              <div className="hidden lg:flex items-center gap-6">
+                <a href="#features" className="text-white/80 hover:text-white transition-colors">Features</a>
+                <a href="#careers" className="text-white/80 hover:text-white transition-colors">Careers</a>
+                <a href="#about" className="text-white/80 hover:text-white transition-colors">About</a>
+              </div>
               <motion.button
-                className="px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-medium hover:shadow-lg transition-all"
+                onClick={() => setShowAuthModal(true)}
+                className="px-3 sm:px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-full font-medium hover:shadow-lg transition-all text-sm sm:text-base"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Sign In
+                {user ? `Hi, ${user.displayName?.split(' ')[0] || 'User'}` : 'Sign In'}
               </motion.button>
             </div>
           </div>
@@ -57,36 +73,36 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
       </motion.nav>
 
       {/* Hero Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 sm:pt-20 pb-8 sm:pb-16">
         <div className="text-center">
           {/* Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3 mb-8"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-xl border border-white/20 rounded-full px-4 sm:px-6 py-2 sm:py-3 mb-6 sm:mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <Sparkles className="w-5 h-5 text-blue-400" />
-            <span className="text-white font-medium">AI-Powered Career Intelligence</span>
+            <Sparkles className="w-4 sm:w-5 h-4 sm:h-5 text-blue-400" />
+            <span className="text-white font-medium text-sm sm:text-base">AI-Powered Career Intelligence</span>
           </motion.div>
 
           {/* Main Heading */}
           <motion.h1
-            className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight"
+            className="text-3xl sm:text-5xl md:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
             Discover Your
             <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 block">
               Dream Career
             </span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
-            className="text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed"
+            className="text-base sm:text-xl text-blue-100 max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
@@ -97,14 +113,14 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-8 sm:mb-16 px-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
             <motion.button
               onClick={onGetStarted}
-              className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-2xl overflow-hidden"
+              className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-2xl overflow-hidden text-sm sm:text-base"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -115,18 +131,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
               </div>
             </motion.button>
             
-            <motion.button
-              className="px-8 py-4 bg-white/10 backdrop-blur-xl border border-white/20 text-white font-semibold rounded-2xl hover:bg-white/20 transition-all"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Watch Demo
-            </motion.button>
           </motion.div>
 
           {/* Stats */}
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
+            className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 max-w-4xl mx-auto px-4"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
@@ -138,16 +147,22 @@ const HeroSection: React.FC<HeroSectionProps> = ({ onGetStarted }) => {
               { icon: Sparkles, value: 50, suffix: '+', label: 'Skills Tracked' }
             ].map(({ icon: Icon, value, suffix, label }, index) => (
               <GlassCard key={index} className="p-6 text-center" hover={false}>
-                <Icon className="w-8 h-8 text-blue-400 mx-auto mb-3" />
-                <div className="text-3xl font-bold text-white mb-2">
+                <Icon className="w-6 sm:w-8 h-6 sm:h-8 text-blue-400 mx-auto mb-2 sm:mb-3" />
+                <div className="text-xl sm:text-3xl font-bold text-white mb-1 sm:mb-2">
                   <AnimatedCounter end={value} suffix={suffix} />
                 </div>
-                <div className="text-blue-200 text-sm">{label}</div>
+                <div className="text-blue-200 text-xs sm:text-sm">{label}</div>
               </GlassCard>
             ))}
           </motion.div>
         </div>
       </div>
+
+      <AuthModal
+        isOpen={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+        onSuccess={handleSignIn}
+      />
     </div>
   );
 };

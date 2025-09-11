@@ -36,7 +36,7 @@ const SocialLinks: React.FC = () => {
 
   return (
     <motion.div
-      className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 space-y-3"
+      className="fixed right-2 sm:right-6 top-1/2 transform -translate-y-1/2 z-50 space-y-2 sm:space-y-3"
       initial={{ opacity: 0, x: 100 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 1, duration: 0.6 }}
@@ -47,6 +47,7 @@ const SocialLinks: React.FC = () => {
           href={link.href}
           className={`
             group flex items-center justify-center w-12 h-12 
+            sm:w-12 sm:h-12 w-10 h-10
             bg-gradient-to-r ${link.color} ${link.hoverColor}
             rounded-full shadow-lg backdrop-blur-sm
             transition-all duration-300
@@ -55,10 +56,10 @@ const SocialLinks: React.FC = () => {
           whileTap={{ scale: 0.95 }}
           title={link.label}
         >
-          <link.icon className="w-5 h-5 text-white" />
+          <link.icon className="w-4 sm:w-5 h-4 sm:h-5 text-white" />
           
           {/* Tooltip */}
-          <div className="absolute right-14 bg-gray-900 text-white px-3 py-1 rounded-lg text-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+          <div className="absolute right-12 sm:right-14 bg-gray-900 text-white px-2 sm:px-3 py-1 rounded-lg text-xs sm:text-sm opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
             {link.label}
           </div>
         </motion.a>

@@ -11,17 +11,17 @@ const SkillSlider: React.FC<SkillSliderProps> = ({ skill, value, onChange, inDem
   const levels = ['Beginner', 'Basic', 'Intermediate', 'Advanced', 'Expert'];
 
   return (
-    <div className="mb-6">
+    <div className="mb-4 sm:mb-6">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
-          <span className="font-medium text-gray-800">{skill}</span>
+          <span className="font-medium text-gray-800 text-sm sm:text-base">{skill}</span>
           {inDemand && (
-            <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full font-medium">
+            <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full font-medium hidden sm:inline">
               High Demand
             </span>
           )}
         </div>
-        <span className="text-sm text-gray-600">{levels[value]}</span>
+        <span className="text-xs sm:text-sm text-gray-600">{levels[value]}</span>
       </div>
       
       <div className="relative">
@@ -37,7 +37,7 @@ const SkillSlider: React.FC<SkillSliderProps> = ({ skill, value, onChange, inDem
           {levels.map((level, index) => (
             <span
               key={level}
-              className={`text-xs ${
+              className={`text-xs hidden sm:inline ${
                 index <= value ? 'text-blue-600 font-medium' : 'text-gray-400'
               }`}
             >

@@ -143,9 +143,14 @@ function App() {
     return Object.values(categorizedSkills);
   };
 
+  const [user, setUser] = useState<any>(null);
+
   const renderLanding = () => (
     <div className="relative">
-      <HeroSection onGetStarted={() => setCurrentScreen('assessment')} />
+      <HeroSection 
+        onGetStarted={() => setCurrentScreen('assessment')} 
+        onUserSignIn={setUser}
+      />
       <FeaturesSection />
       <CareerCategoriesSection />
       <Footer />
@@ -154,26 +159,26 @@ function App() {
   );
 
   const renderAssessment = () => (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
-      <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 px-2 sm:px-0">
+      <div className="max-w-6xl mx-auto px-2 sm:px-4 py-4 sm:py-8">
         <motion.div
-          className="mb-8"
+          className="mb-4 sm:mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <GlassCard className="p-6 bg-white/10 backdrop-blur-xl">
+          <GlassCard className="p-4 sm:p-6 bg-white/10 backdrop-blur-xl">
             <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 sm:gap-4">
                 <AnimatedLogo size="md" />
                 <div>
-                  <h1 className="text-2xl font-bold text-white">Skills Assessment</h1>
-                  <p className="text-blue-200">Rate your current proficiency in these key skills</p>
+                  <h1 className="text-lg sm:text-2xl font-bold text-white">Skills Assessment</h1>
+                  <p className="text-blue-200 text-sm sm:text-base">Rate your current proficiency in these key skills</p>
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-white font-medium">Step 1 of 3</div>
-                <div className="w-32 h-2 bg-white/20 rounded-full mt-2">
+                <div className="text-white font-medium text-sm sm:text-base">Step 1 of 3</div>
+                <div className="w-20 sm:w-32 h-2 bg-white/20 rounded-full mt-2">
                   <div className="w-1/3 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></div>
                 </div>
               </div>
@@ -181,7 +186,7 @@ function App() {
           </GlassCard>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-8">
           {/* Skills Form */}
           <motion.div
             className="lg:col-span-2"
@@ -189,8 +194,8 @@ function App() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <GlassCard className="p-8 bg-white/10 backdrop-blur-xl">
-              <div className="space-y-6">
+            <GlassCard className="p-4 sm:p-8 bg-white/10 backdrop-blur-xl">
+              <div className="space-y-4 sm:space-y-6">
                 {skills.map((skill) => (
                   <SkillSlider
                     key={skill.id}
@@ -211,22 +216,22 @@ function App() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <GlassCard className="p-8 bg-white/10 backdrop-blur-xl h-full">
-              <h3 className="text-xl font-bold text-white mb-6 text-center">Your Skills Profile</h3>
+            <GlassCard className="p-4 sm:p-8 bg-white/10 backdrop-blur-xl h-full">
+              <h3 className="text-lg sm:text-xl font-bold text-white mb-4 sm:mb-6 text-center">Your Skills Profile</h3>
               <SkillRadar skills={getSkillsForRadar()} />
             </GlassCard>
           </motion.div>
         </div>
 
         <motion.div
-          className="flex justify-between mt-8"
+          className="flex justify-between mt-4 sm:mt-8 px-2"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <motion.button
             onClick={() => setCurrentScreen('landing')}
-            className="px-6 py-3 text-white/80 hover:text-white transition-colors"
+            className="px-4 sm:px-6 py-2 sm:py-3 text-white/80 hover:text-white transition-colors text-sm sm:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -234,7 +239,7 @@ function App() {
           </motion.button>
           <motion.button
             onClick={() => setCurrentScreen('interests')}
-            className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-2xl hover:shadow-lg transition-all"
+            className="px-4 sm:px-8 py-2 sm:py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-2xl hover:shadow-lg transition-all text-sm sm:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

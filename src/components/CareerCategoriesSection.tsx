@@ -80,25 +80,25 @@ const CareerCategoriesSection: React.FC = () => {
   ];
 
   return (
-    <section id="careers" className="py-24 bg-gradient-to-br from-white to-slate-50">
+    <section id="careers" className="py-12 sm:py-24 bg-gradient-to-br from-white to-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-16"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-4">
             Explore
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600"> Career Categories</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
             Discover opportunities across diverse industries and find your perfect career match
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {categories.map((category, index) => (
             <motion.div
               key={index}
@@ -107,15 +107,15 @@ const CareerCategoriesSection: React.FC = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <GlassCard className={`p-6 h-full bg-gradient-to-br ${category.bgGradient} border-white/40`}>
-                <div className={`w-14 h-14 bg-gradient-to-br ${category.gradient} rounded-2xl flex items-center justify-center mb-4`}>
-                  <category.icon className="w-7 h-7 text-white" />
+              <GlassCard className={`p-4 sm:p-6 h-full bg-gradient-to-br ${category.bgGradient} border-white/40`}>
+                <div className={`w-12 sm:w-14 h-12 sm:h-14 bg-gradient-to-br ${category.gradient} rounded-2xl flex items-center justify-center mb-3 sm:mb-4`}>
+                  <category.icon className="w-6 sm:w-7 h-6 sm:h-7 text-white" />
                 </div>
                 
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{category.title}</h3>
-                <p className="text-sm text-gray-600 mb-4 leading-relaxed">{category.description}</p>
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{category.title}</h3>
+                <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4 leading-relaxed">{category.description}</p>
                 
-                <div className="flex items-center justify-between text-sm">
+                <div className="flex items-center justify-between text-xs sm:text-sm">
                   <div>
                     <div className="font-semibold text-gray-900">{category.jobs}</div>
                     <div className="text-gray-500">Open Jobs</div>
@@ -131,14 +131,14 @@ const CareerCategoriesSection: React.FC = () => {
         </div>
 
         <motion.div
-          className="text-center mt-12"
+          className="text-center mt-8 sm:mt-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.8 }}
         >
           <motion.button
-            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl hover:shadow-lg transition-all"
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl hover:shadow-lg transition-all text-sm sm:text-base"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
