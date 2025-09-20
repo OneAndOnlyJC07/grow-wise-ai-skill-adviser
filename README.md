@@ -79,7 +79,7 @@ Auth & Database: Firebase / Supabase
 
 AI Engine: Google Cloud AI / Generative AI APIs
 
-Hosting: Vercel / Netlify
+Hosting:Netlify
 
 📦 Installation
 # Clone the repo
